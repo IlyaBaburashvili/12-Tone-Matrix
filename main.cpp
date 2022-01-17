@@ -1,13 +1,13 @@
 #include <iostream>
-#include "12tone.hpp"
 #include <vector>
 using namespace std;
 
+#include "12tone.hpp"
 
 int main(int argc, char** argv){
-    vector<string>tone_row;
+    vector<string> tone_row;
     for (int i = 0; i < argc; i++){
-        tone_row.push_back[argv[i]];
+        tone_row.push_back(argv[i]);
     }
     TwelveToneMatrix m(tone_row);
     vector<vector<string>>matrix=m.Create_Matrix(tone_row);
