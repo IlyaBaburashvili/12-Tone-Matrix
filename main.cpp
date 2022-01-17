@@ -9,7 +9,8 @@ int main(int argc, char** argv){
     for (int i = 0; i < argc; i++){
         tone_row.push_back[argv[i]];
     }
-    vector<vector<sting>>matrix=Create_Matrix(tone_row);
+    TwelveToneMatrix m(tone_row);
+    vector<vector<string>>matrix=m.Create_Matrix(tone_row);
     for(int i=0; i<matrix.size();i++){
         for(int j=0; j<matrix.size(); j++){
             cout << matrix[i][j] << " ";
