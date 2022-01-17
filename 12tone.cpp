@@ -13,7 +13,7 @@ TwelveToneMatrix::TwelveToneMatrix(vector <string> input){
         {"D#", "Eb"},
         {"E", "Fb"},
         {"F", "E#"},
-        {"E", "Fb"},
+        {"F#", "Gb"},
         {"G", "G"},
         {"G#", "Ab"},
         {"A", "A"},
@@ -61,23 +61,29 @@ TwelveToneMatrix::TwelveToneMatrix(vector <string> input){
 
 
     vector<string> TwelveToneMatrix::inversion(vector <string> row){
-        vector<string>inverted_row;
-        inverted_row.push_back(row[0]);
+        vector<string>inverted_row(row.size());
+        inverted_row[0]=row[0];
         for(int i=1; i< row.size(); i++){
-            int position=notes_map[row[i]];
-            int interval=abs(notes_map[row[i]]-notes_map[row[i-1]]);
-            int inverted_pos=(position+interval)%12;
+            int position=notes_map[inverted_row[i-1]];
+            int interval=notes_map[row[i-1]]-notes_map[row[i]];
+            int inverted_pos=(position+interval);
+            if(inverted_pos>11){
+                inverted_pos=inverted_pos%12;
+            }
+            else if(inverted_pos<0){
+                inverted_pos+=12;
+            }
             if(inverted_pos==0||inverted_pos==4||inverted_pos==5||inverted_pos==11){
-                inverted_row.push_back(notes[inverted_pos][0]);
+                inverted_row[i]=notes[inverted_pos][0];
             }
             else if(row[i][row[i].length()-1]=='#'){
-                inverted_row.push_back(notes[inverted_pos][0]);          
+                inverted_row[i]=notes[inverted_pos][0];          
             }
             else if(row[i][row[i].length()-1]=='b'){
-                inverted_row.push_back(notes[inverted_pos][1]);          
+                inverted_row[i]=notes[inverted_pos][1];          
             }
             else {
-                inverted_row.push_back(notes[inverted_pos][0]);          
+                inverted_row[i]=notes[inverted_pos][0];          
             }
         }
         return inverted_row;
@@ -112,11 +118,13 @@ TwelveToneMatrix::TwelveToneMatrix(vector <string> input){
     vector<vector<string>> TwelveToneMatrix::Create_Matrix(vector<string>row){
         vector<vector<string>> tone_matrix( row.size() , vector<string> (row.size(), ""));
         vector<string>inverted=inversion(row);
-        for(int i=0; i<inverted.size(); i++){
-            tone_matrix[0][i]=inverted[i];
+        
+        for(int i=0; i<row.size(); i++){
+            tone_matrix[0][i]=row[i];
         }
         for(int i=1; i<inverted.size(); i++){
             int interval=abs(notes_map[inverted[i]]-notes_map[inverted[i-1]]);
+            cout << interval;
             vector<string>transposed=transpose(inverted, interval);
             for(int j=0; j<inverted.size(); j++){
                 tone_matrix[i][j]=transposed[i];
