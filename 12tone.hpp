@@ -1,8 +1,10 @@
 #ifndef TWELVE_TONE_
 #define TWELVE_TONE_
 
-#include "12tone.cpp"
+
 #include <iostream>
+#include <map>
+#include <vector>
 using namespace std;
 
 class TwelveToneMatrix{
@@ -23,4 +25,4 @@ private:
     map<string,int> notes_map;
     vector<string> tone_row;
 };
-#end_if
+#endif
