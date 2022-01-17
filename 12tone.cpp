@@ -5,7 +5,7 @@
 #include "12tone.hpp"
 using namespace std;
 
-TwelveToneMatrix::TwelveToneMatrix(){
+TwelveToneMatrix::TwelveToneMatrix(vector <string> input){
      notes={
         {"C", "B#"},
         {"C#", "Db"},    
@@ -45,6 +45,9 @@ TwelveToneMatrix::TwelveToneMatrix(){
     {"B", 11},
     {"Cb", 11},
     };
+
+    tone_row=input;
+
 }
 
 
@@ -121,3 +124,4 @@ TwelveToneMatrix::TwelveToneMatrix(){
         }
         return 12tone_matrix;
     }
+
