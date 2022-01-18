@@ -99,6 +99,9 @@ TwelveToneMatrix::TwelveToneMatrix(vector <string> input){
         vector<string>transposed;
         for(int i=0; i<row.size(); i++){
             int pos=(notes_map[row[i]]+half_steps)%12;
+            if(pos<0){
+                pos+=12;
+            }
             if(pos==0||pos==4||pos==5||pos==11){
                 transposed.push_back(notes[pos][0]);
             }
@@ -123,13 +126,9 @@ TwelveToneMatrix::TwelveToneMatrix(vector <string> input){
             tone_matrix[0][i]=row[i];
         }
         for(int i=1; i<inverted.size(); i++){
-            //tone_matrix[i][0]=inverted[i];
-            int interval=abs(notes_map[inverted[i]]-notes_map[inverted[i-1]]);
+            int interval=notes_map[inverted[i]]-notes_map[row[0]];
             cout << interval;
             vector<string>transposed=transpose(row, interval);
-            for(int i=0; i<transposed.size(); i++){
-                cout << transposed[i] << "";
-            }
             cout << endl;
             for(int j=0; j<inverted.size(); j++){
                 tone_matrix[i][j]=transposed[j];
@@ -137,4 +136,3 @@ TwelveToneMatrix::TwelveToneMatrix(vector <string> input){
         }
         return tone_matrix;
     }
-
