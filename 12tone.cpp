@@ -123,11 +123,16 @@ TwelveToneMatrix::TwelveToneMatrix(vector <string> input){
             tone_matrix[0][i]=row[i];
         }
         for(int i=1; i<inverted.size(); i++){
+            //tone_matrix[i][0]=inverted[i];
             int interval=abs(notes_map[inverted[i]]-notes_map[inverted[i-1]]);
             cout << interval;
-            vector<string>transposed=transpose(inverted, interval);
+            vector<string>transposed=transpose(row, interval);
+            for(int i=0; i<transposed.size(); i++){
+                cout << transposed[i] << "";
+            }
+            cout << endl;
             for(int j=0; j<inverted.size(); j++){
-                tone_matrix[i][j]=transposed[i];
+                tone_matrix[i][j]=transposed[j];
             }
         }
         return tone_matrix;
