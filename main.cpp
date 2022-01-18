@@ -6,7 +6,7 @@ using namespace std;
 
 int main(int argc, char** argv){
     vector<string> tone_row;
-    for (int i = 0; i < argc; i++){
+    for (int i = 1; i < argc; i++){
         tone_row.push_back(argv[i]);
     }
     TwelveToneMatrix m(tone_row);
@@ -14,6 +14,9 @@ int main(int argc, char** argv){
     for(int i=0; i<matrix.size();i++){
         for(int j=0; j<matrix.size(); j++){
             cout << matrix[i][j] << " ";
+            if(matrix[i][j].length()==1){
+                cout << " ";
+            }
         }
         cout << endl;
     }
