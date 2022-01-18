@@ -2,7 +2,7 @@
 #include <vector>
 using namespace std;
 
-#include "12tone.hpp"
+#include "12tone.cpp"
 
 int main(int argc, char** argv){
     vector<string> tone_row;
