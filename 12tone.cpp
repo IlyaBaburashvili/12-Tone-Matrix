@@ -127,9 +127,7 @@ TwelveToneMatrix::TwelveToneMatrix(vector <string> input){
         }
         for(int i=1; i<inverted.size(); i++){
             int interval=notes_map[inverted[i]]-notes_map[row[0]];
-            cout << interval;
             vector<string>transposed=transpose(row, interval);
-            cout << endl;
             for(int j=0; j<inverted.size(); j++){
                 tone_matrix[i][j]=transposed[j];
             }
